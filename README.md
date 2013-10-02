@@ -1,9 +1,14 @@
-Datalist Extensions for Alfresco Share (for Alfresco 4.x)
+Datalist Extensions for Alfresco Share (for Alfresco 4.1)
 ===========================================================
 
-This project is the Alfresco 4.x port of fme's datalist extensions.  I switched to github and maven because I personally don't like svn and ant. For now, the documentation remains at [google](http://code.google.com/p/fme-alfresco-extensions/wiki/DatalistExtension).
+This a fork of the 4.x fme datalist extensions.  The following has been removed:
 
-Altough the project has not seen a lot of testing on 4.2.x - this version of Alfresco is now the primary target. The master branch may still work with 4.0.x.
+* fme discussions
+* XLS export button
+
+Additonally, the filter search has been switched back to lucene as the solr query is incredibly slow and times out in my environment. Additionally, I've added thumbnail generation if you insert a column with the label "Thumbnail". A a thumbnail will need to be registered for the name used, this will be included in a later commit.
+
+This has only been tested on 4.1
 
 Installation
 ============
@@ -13,4 +18,3 @@ Installation
 * Put `./fme-alfresco-extdl-repo/target/fme-alfresco-extdl-repo-1.2.jar` in `tomcat/webapps/alfresco/WEB-INF/lib`
 
 
-Thanks Jan for supporting me !

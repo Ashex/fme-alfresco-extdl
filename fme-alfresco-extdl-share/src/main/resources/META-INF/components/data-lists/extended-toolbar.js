@@ -45,11 +45,13 @@
 	       */
 	      onReady: function DataListToolbar_onReady()
 	      {
-	         this.widgets.exportCsvButton = Alfresco.util.createYUIButton(this, "exportCsvButton", this.onExportCsv,
+	        /** this.widgets.exportCsvButton = Alfresco.util.createYUIButton(this, "exportCsvButton", this.onExportCsv,
 	         {
 	            disabled: true
 	         });
+	         */
 	         Alfresco.component.ExtDataListToolbar.superclass.onReady.call(this);
+	         
 	      },
 	      
 	      /**

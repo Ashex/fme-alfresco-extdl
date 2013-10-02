@@ -9,11 +9,6 @@
          		<js src="/modules/documentlibrary/global-folder.js" />
          		<css src="/modules/documentlibrary/global-folder.css" />
          		<js src="/modules/simple-view-dialog.js" />
-         		<css src="/components/form/comments.css" />
-         		<js src="/components/form/comments.js" />
-         		<css src="/components/blog/createcomment.css" />
-         		<js src="/components/blog/createcomment.js" />
-         		<js src="/components/blog/blogdiscussions-common.js" />
          		<js src="/components/upload/file-upload.js" />
          		<js src="/components/upload/flash-upload.js" />
          		<js src="/components/upload/html-upload.js" />
@@ -38,7 +33,7 @@
                <show id="dl:simpletaskDueDate" />
                <show id="dl:simpletaskPriority" />
                <show id="dl:simpletaskStatus" />
-               <hide id="dl:simpletaskComments"/>
+               <show id="dl:simpletaskComments"/>
              </field-visibility>
             <create-form template="../data-lists/forms/dataitem.ftl" />
             <appearance>
@@ -52,6 +47,9 @@
                   	<control-param name="rows">20</control-param>
                   	<control-param name="style">width:750px</control-param>
                   </control>
+               </field>
+               <field id="dl:simpletaskComments">
+                  <control template="/org/alfresco/components/form/controls/textarea.ftl" />
                </field> 
             </appearance>
          </form>
@@ -64,8 +62,8 @@
                <show id="dl:simpletaskDueDate" />
                <show id="dl:simpletaskPriority" />
                <show id="dl:simpletaskStatus" />
-               <hide id="dl:simpletaskComments"/>
-               <show id="fm:discussable" force="true"/>
+               <show id="dl:simpletaskComments"/>
+               <hide id="fm:discussable"/>
             </field-visibility>
          </form>
          <form id="filter">
@@ -130,7 +128,9 @@
                			<control-param name="style">width:250px</control-param>
                		</control>
                </field>
-               
+               <field id="dl:simpletaskComments" set="normal">
+                  <control template="/org/alfresco/components/form/controls/textarea.ftl" />
+               </field>
             </appearance>
          </form>
       </forms>
@@ -149,11 +149,10 @@
                <!-- dl:simpletask type -->
                <show id="dl:simpletaskDueDate" />
                <show id="dl:simpletaskPriority" />
-               <hide id="dl:simpletaskComments"/>
+               <show id="dl:simpletaskComments"/>
                <show id="dl:simpletaskStatus" />
                <show id="cm:creator" />
                <show id="cm:created" />
-               <show id="fm:discussable"/>
                <show id="cm:versionable"/>
             </field-visibility>
             <edit-form template="../data-lists/forms/dataitem-edit.ftl" />
@@ -182,10 +181,8 @@
                		<control template="/org/alfresco/components/form/controls/extended-person.ftl"/>
                	</field>
                <field id="cm:created" set="normal" read-only="true"/>
-               <field id="fm:discussable" label-id="form.label.comments" set="other">
-                  <control template="/org/alfresco/components/form/controls/comments.ftl">
-                  	<control-param name="editorWidth">450</control-param>
-                  </control>
+               <field id="dl:simpletaskComments" set="normal">
+                  <control template="/org/alfresco/components/form/controls/textarea.ftl" />
                </field>
                <field id="cm:versionable" label-id="form.label.version-history" set="normal">
                   <control template="/org/alfresco/components/form/controls/version.ftl" />
@@ -266,7 +263,7 @@
                <show id="dl:contactPhoneOffice" />
                <show id="dl:contactPhoneMobile" />
                <show id="dl:contactNotes" />
-               <show id="fm:discussable" force="true"/>
+               <hide id="fm:discussable"/>
             </field-visibility>
          </form>
           <form id="filter">
@@ -360,7 +357,6 @@
                <show id="dl:contactNotes" />
                <show id="cm:creator" />
                <show id="cm:created" />
-               <show id="fm:discussable"/>
                <show id="cm:versionable"/>
             </field-visibility>
             <edit-form template="../data-lists/forms/dataitem-edit.ftl" />
@@ -415,11 +411,6 @@
                		<control template="/org/alfresco/components/form/controls/extended-person.ftl"/>
                	</field>
                <field id="cm:created" set="normal"/>
-               <field id="fm:discussable" label-id="form.label.comments" set="other">
-                  <control template="/org/alfresco/components/form/controls/comments.ftl">
-                  	<control-param name="editorWidth">450</control-param>
-                  </control>
-               </field>
                <field id="cm:versionable" label-id="form.label.version-history" set="normal">
                   <control template="/org/alfresco/components/form/controls/version.ftl" />
                </field>	
@@ -501,7 +492,7 @@
                <!-- cm:attachable aspect -->
                <show id="cm:attachments" />
                <show id="dl:eventAgendaNotes" />
-               <show id="fm:discussable" force="true"/>
+               <hide id="fm:discussable"/>
             </field-visibility>
          </form>
          <form id="filter">
@@ -593,7 +584,6 @@
                <show id="dl:eventAgendaNotes" />
                <show id="cm:creator" />
                <show id="cm:created" />
-               <show id="fm:discussable"/>
                <show id="cm:versionable"/>
             </field-visibility>
              <edit-form template="../data-lists/forms/dataitem-edit.ftl" />
@@ -647,11 +637,6 @@
                		<control template="/org/alfresco/components/form/controls/extended-person.ftl"/>
                	</field>
                <field id="cm:created" set="normal"/>
-               <field id="fm:discussable" label-id="form.label.comments" set="other">
-                  <control template="/org/alfresco/components/form/controls/comments.ftl">
-                  	<control-param name="editorWidth">450</control-param>
-                  </control>
-               </field>
                <field id="cm:versionable" label-id="form.label.version-history" set="normal">
                   <control template="/org/alfresco/components/form/controls/version.ftl" />
                </field>	
@@ -678,7 +663,7 @@
                <!-- cm:attachable aspect -->
                <show id="cm:attachments" />
                <!-- dl:event type -->
-               <hide id="dl:eventNote" />
+               <show id="dl:eventNote" />
             </field-visibility>
             <create-form template="../data-lists/forms/dataitem.ftl" />
             <appearance>
@@ -709,6 +694,9 @@
                     <control-param name="showTargetLink">true</control-param>
                   </control>
                </field>
+               <field id="dl:eventNote" set="normal">
+                  <control template="/org/alfresco/components/form/controls/textarea.ftl" />
+               </field>
             </appearance>
          </form>
          <form id="datagrid">
@@ -722,8 +710,8 @@
                <!-- cm:attachable aspect -->
                <show id="cm:attachments" />
                <!-- dl:event type -->
-               <hide id="dl:eventNote" />
-               <show id="fm:discussable" force="true"/>
+               <show id="dl:eventNote" />
+               <hide id="fm:discussable"/>
             </field-visibility>
          </form>
           <form id="filter">
@@ -817,8 +805,7 @@
                <!-- cm:attachable aspect -->
                <show id="cm:attachments" />
                <!-- dl:event type -->
-               <hide id="dl:eventNote" />
-               <show id="fm:discussable"/>
+               <show id="dl:eventNote" />
                <show id="cm:creator" />
                <show id="cm:created" />
                <show id="cm:versionable"/>
@@ -858,12 +845,10 @@
                     <control-param name="showTargetLink">true</control-param>
                   </control>
                </field>
-               
-               <field id="fm:discussable" label-id="form.label.comments" set="other">
-                  <control template="/org/alfresco/components/form/controls/comments.ftl">
-                  	<control-param name="editorWidth">450</control-param>
-                  </control>
+               <field id="dl:eventNote" set="normal">
+                  <control template="/org/alfresco/components/form/controls/textarea.ftl" />
                </field>
+
                <field id="cm:creator" set="other">
                		<control template="/org/alfresco/components/form/controls/extended-person.ftl"/>
                	</field>
@@ -892,7 +877,7 @@
                <show id="cm:description" />
                <!-- dl:issue type -->
                <show id="dl:issueDueDate" />
-               <hide id="dl:issueComments" />
+               <show id="dl:issueComments" />
                <!-- cm:attachable aspect -->
                <show id="cm:attachments" />
             </field-visibility>
@@ -915,6 +900,9 @@
                     <control-param name="showTargetLink">true</control-param>
                   </control>
                </field>
+               <field id="dl:issueComments" set="normal">
+                  <control template="/org/alfresco/components/form/controls/textarea.ftl" />
+               </field>
             </appearance>
          </form>
          <form id="datagrid">
@@ -932,10 +920,10 @@
                <show id="cm:description" />
                <!-- dl:issue type -->
                <show id="dl:issueDueDate" />
-               <hide id="dl:issueComments" />
+               <show id="dl:issueComments" />
                <!-- cm:attachable aspect -->
                <show id="cm:attachments" />
-               <show id="fm:discussable" force="true"/>
+               <hide id="fm:discussable"/>
             </field-visibility>
          </form>
           <form id="filter">
@@ -1036,11 +1024,10 @@
                <show id="cm:description" />
                <!-- dl:issue type -->
                <show id="dl:issueDueDate" />
-               <hide id="dl:issueComments" />
+               <show id="dl:issueComments" />
                <!-- cm:attachable aspect -->
                <show id="cm:attachments" />
                <!-- dl:event type -->
-               <show id="fm:discussable"/>
                <show id="cm:creator" />
                <show id="cm:created" />
                <show id="cm:versionable"/>
@@ -1078,10 +1065,8 @@
                   </control>
                </field>
                
-               <field id="fm:discussable" label-id="form.label.comments" set="other">
-                  <control template="/org/alfresco/components/form/controls/comments.ftl">
-                  	<control-param name="editorWidth">450</control-param>
-                  </control>
+               <field id="dl:issueComments" set="normal">
+                  <control template="/org/alfresco/components/form/controls/textarea.ftl" />
                </field>
                <field id="cm:creator" set="other">
                		<control template="/org/alfresco/components/form/controls/extended-person.ftl"/>
@@ -1182,7 +1167,7 @@
                <show id="cm:description" />
                <!-- cm:attachable aspect -->
                <show id="cm:attachments" />
-               <show id="fm:discussable" force="true"/>
+               <hide id="fm:discussable"/>
             </field-visibility>
          </form>
          <form id="filter">
@@ -1278,7 +1263,6 @@
                <!-- cm:attachable aspect -->
                <show id="cm:attachments" />
                <!-- dl:location type -->
-               <show id="fm:discussable"/>
                <show id="cm:creator" />
                <show id="cm:created" />
                <show id="cm:versionable"/>
@@ -1336,11 +1320,7 @@
                   </control>
                </field>
                
-               <field id="fm:discussable" label-id="form.label.comments" set="other">
-                  <control template="/org/alfresco/components/form/controls/comments.ftl">
-                  	<control-param name="editorWidth">450</control-param>
-                  </control>
-               </field>
+
                <field id="cm:creator" set="other">
                		<control template="/org/alfresco/components/form/controls/extended-person.ftl"/>
                	</field>
@@ -1419,7 +1399,7 @@
                <show id="dl:meetingAgendaOwner" />
                <!-- cm:attachable aspect -->
                <show id="cm:attachments" />
-               <show id="fm:discussable" force="true"/>
+               <hide id="fm:discussable"/>
             </field-visibility>
          </form>
          <form id="filter">
@@ -1494,7 +1474,6 @@
                <!-- cm:attachable aspect -->
                <show id="cm:attachments" />
                <!-- dl:location type -->
-               <show id="fm:discussable"/>
                <show id="cm:creator" />
                <show id="cm:created" />
                <show id="cm:versionable"/>
@@ -1537,11 +1516,6 @@
                   </control>
                </field>
                
-               <field id="fm:discussable" label-id="form.label.comments" set="other">
-                  <control template="/org/alfresco/components/form/controls/comments.ftl">
-                  	<control-param name="editorWidth">450</control-param>
-                  </control>
-               </field>
                <field id="cm:creator" set="other">
                		<control template="/org/alfresco/components/form/controls/extended-person.ftl"/>
                	</field>
@@ -1574,7 +1548,7 @@
                <!-- dl:gantt aspect -->
                <show id="dl:ganttPercentComplete" />
                <!-- dl:task type -->
-               <hide id="dl:taskComments" />
+               <show id="dl:taskComments" />
                <!-- cm:attachable aspect -->
                <show id="cm:attachments" />
             </field-visibility>
@@ -1597,6 +1571,9 @@
                     <control-param name="showTargetLink">true</control-param>
                   </control>
                </field>
+               <field id="dl:taskComments" set="normal">
+                  <control template="/org/alfresco/components/form/controls/textarea.ftl" />
+               </field>
             </appearance>
          </form>
          <form id="datagrid">
@@ -1615,10 +1592,10 @@
                <!-- dl:gantt aspect -->
                <show id="dl:ganttPercentComplete" />
                <!-- dl:task type -->
-               <hide id="dl:taskComments" />
+               <show id="dl:taskComments" />
                <!-- cm:attachable aspect -->
                <show id="cm:attachments" />
-               <show id="fm:discussable" force="true"/>
+               <hide id="fm:discussable"/>
             </field-visibility>
          </form>
          <form id="filter">
@@ -1701,6 +1678,9 @@
                			<control-param name="style">width:250px</control-param>
                		</control>
                </field>
+               <field id="dl:taskComments" set="normal">
+                  <control template="/org/alfresco/components/form/controls/textarea.ftl" />
+               </field>
             </appearance>
          </form>
       </forms>
@@ -1726,10 +1706,9 @@
                <!-- dl:gantt aspect -->
                <show id="dl:ganttPercentComplete" />
                <!-- dl:task type -->
-               <hide id="dl:taskComments" />
+               <show id="dl:taskComments" />
                <!-- cm:attachable aspect -->
                <show id="cm:attachments" />
-               <show id="fm:discussable"/>
                <show id="cm:creator" />
                <show id="cm:created" />
                <show id="cm:versionable"/>
@@ -1766,10 +1745,8 @@
                   </control>
                </field>
                
-               <field id="fm:discussable" label-id="form.label.comments" set="other">
-                  <control template="/org/alfresco/components/form/controls/comments.ftl">
-                  	<control-param name="editorWidth">450</control-param>
-                  </control>
+               <field id="dl:taskComments" set="normal">
+                  <control template="/org/alfresco/components/form/controls/textarea.ftl" />
                </field>
                <field id="cm:creator" set="other">
                		<control template="/org/alfresco/components/form/controls/extended-person.ftl"/>
@@ -1829,7 +1806,7 @@
                <show id="dl:todoNotes" />
                <show id="dl:assignee" />
                <show id="dl:attachments" />
-               <show id="fm:discussable" force="true"/>
+               <hide id="fm:discussable"/>
             </field-visibility>
          </form>
          <form id="filter">
@@ -1910,7 +1887,6 @@
                <show id="dl:todoNotes" />
                <show id="dl:assignee" />
                <show id="dl:attachments" />
-               <show id="fm:discussable"/>
                <show id="cm:creator" />
                <show id="cm:created" />
                <show id="cm:versionable"/>
@@ -1941,18 +1917,10 @@
                     <control-param name="showTargetLink">true</control-param>
                   </control>
                </field>
-               <field id="fm:discussable" label-id="form.label.comments" set="other">
-                  <control template="/org/alfresco/components/form/controls/comments.ftl">
-                  	<control-param name="editorWidth">450</control-param>
-                  </control>
-               </field>
                <field id="cm:creator" set="other">
                		<control template="/org/alfresco/components/form/controls/extended-person.ftl"/>
                	</field>
                <field id="cm:created" set="other"/>
-               <field id="cm:versionable" label-id="form.label.version-history" set="other">
-                  <control template="/org/alfresco/components/form/controls/version.ftl" />
-               </field>	
             </appearance>
          </form>
       </forms>

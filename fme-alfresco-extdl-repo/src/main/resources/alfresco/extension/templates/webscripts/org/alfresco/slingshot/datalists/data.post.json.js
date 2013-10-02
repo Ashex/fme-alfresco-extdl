@@ -143,6 +143,7 @@ function getData()
    else
    {
 	  // XPath for solr systems
+	  /*
 	  var n = search.findNode(parsedArgs.nodeRef);
 	  var q = xPathFilterQuery(filter.filterData);
 	  // logger.log(parsedArgs.nodeRef + " -> *" + q.propQuery);
@@ -152,7 +153,8 @@ function getData()
 		  res = filterRange(res, q.rangeFilters[i]);
 	  }
 	  allNodes = res;
-	  /*
+	  */
+	  
       var filterParams = Filters.getFilterParams(filter, parsedArgs)
          query = filterParams.query;
       // Query the nodes - passing in default sort and result limit parameters
@@ -171,7 +173,7 @@ function getData()
             namespace: (filterParams.namespace ? filterParams.namespace : null)
          });
       }
-      */
+      
    }
 
    if (allNodes.length > 0)

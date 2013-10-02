@@ -144,19 +144,32 @@
                         	  if (ii > 2 && i === 2){
                         		  html +="<span>...</span>"
                         	  }else if (i < 2){
+                                  if (datalistColumn.name.toLowerCase() == 'fm:discussable') {
+                                    continue
+                                  }
                         		  if (data.linkValue){
                         			  html += '<a href="' + Alfresco.util.siteURL((data.metadata == "container" ? 'folder' : 'document') + '-details?nodeRef=' + data.linkValue) + '">';
                         		  }else{
                         			  html += '<a href="' + Alfresco.util.siteURL((data.metadata == "container" ? 'folder' : 'document') + '-details?nodeRef=' + data.value) + '">';
                         		  }
+                        		  if (datalistColumn.label.toLowerCase() == 'thumbnail' )  {
+                                   html+= '<img src="' + '/share/proxy/alfresco/api/node/' + data.value.toString().replace('://', '/') + '/content/thumbnails/imgpreviewmedium?c=queue&ph=true"' + 'alt="' + $html(data.displayValue) + '" title="' + $html(data.displayValue) + '"/>' + '</a>'
+                                   } else{
                                   html += '<img src="' + Alfresco.constants.URL_RESCONTEXT + 'components/images/filetypes/' + Alfresco.util.getFileIcon(data.displayValue, (data.metadata == "container" ? 'cm:folder' : null), 16) + '" width="16" alt="' + $html(data.displayValue) + '" title="' + $html(data.displayValue) + '" />';
-                                  html += ' ' + $html(data.displayValue) + '</a>'  
+                                  html += ' ' + $html(data.displayValue) + '</a>'
+                                  }
+                                
+                            
+                                  
                         	  }
                               break;
-                           
+                           /**
+                            * Discussions feature broken in 4.1, disabled and reverted all datalists to original comments form
+                            */
                            case "discussion":
-                        	   html+= scope.msg("datalist.comments.count", data.displayValue);
+
                         	   break;
+                        	   
                            default:
                         	  if ($html(data.displayValue.length) > 40){
                         		  html += $html(data.displayValue.substring(0,40) + '...');
@@ -244,7 +257,7 @@
          var editDetails = new Alfresco.module.SimpleDialog(this.id + "-editDetails");
          editDetails.setOptions(
          {
-            width: "1000px",
+            width: "800px",
             templateUrl: templateUrl,
             actionUrl: null,
             destroyOnHide: true,
@@ -327,7 +340,7 @@
          var viewDetails = new Alfresco.module.SimpleViewDialog(this.id + "-viewDetails");
          viewDetails.setOptions(
          {
-            width: "1000px",
+            width: "800px",
             templateUrl: templateUrl
          }).show();
       },
@@ -350,6 +363,9 @@
          for (var i = 0, ii = this.datalistColumns.length; i < ii; i++)
          {
             column = this.datalistColumns[i];
+                //Remove the  fme Comments column
+            if (this.dataResponseFields[i] == "prop_fm_discussable"){}
+            else{
             columnDefinitions.push(
             {
                key: this.dataResponseFields[i],
@@ -361,7 +377,7 @@
                   sortFunction: this.getSortFunction()
                },
                formatter: this.getCellFormatter(column.dataType)
-            });
+            })};
          }
 
          // Add actions as last column

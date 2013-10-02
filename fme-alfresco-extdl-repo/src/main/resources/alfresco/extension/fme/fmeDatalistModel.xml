@@ -16,8 +16,6 @@
       <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
       <!-- Import Alfresco Content Domain Model Definitions -->
       <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
-      <!-- Import Alfresco Forum Model Definitions -->
-      <import uri="http://www.alfresco.org/model/forum/1.0" prefix="fm"/>
       <!-- Import Alfresco Content Domain Model Definitions -->
       <import uri="http://www.alfresco.org/model/system/1.0" prefix="sys" />
    </imports>
@@ -81,7 +79,6 @@
          <parent>cm:content</parent>
          <mandatory-aspects>
             <aspect>cm:versionable</aspect>
-         	<aspect>fm:discussable</aspect>
          	<aspect>dl:dataListItemId</aspect>
          </mandatory-aspects>
       </type>

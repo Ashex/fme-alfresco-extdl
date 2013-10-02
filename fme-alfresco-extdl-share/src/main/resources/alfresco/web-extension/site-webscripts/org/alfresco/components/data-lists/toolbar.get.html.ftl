@@ -15,6 +15,7 @@
                </span>
             </span>
          </div>
+         <#-- Disable Export XLS button since it doesn't work in 4.1. Relevant bit in extended-toolbar.js is also disabled
          <div class="export-csv">
             <span id="${id}-exportCsvButton" class="yui-button yui-push-button">
                <span class="first-child">
@@ -22,6 +23,7 @@
                </span>
             </span>
          </div>
+         -->
          <div class="selected-items">
             <button class="no-access-check" id="${args.htmlid}-selectedItems-button" name="doclist-selectedItems-button">${msg("menu.selected-items")}</button>
             <div id="${args.htmlid}-selectedItems-menu" class="yuimenu">

@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
+<beans>
+    
+	<bean id="fme.thumbnailRegistry" class="de.fme.alfresco.repo.thumbnails.ThumbnailRegistryBootstrap" depends-on="ThumbnailService" init-method="init">
+		<property name="thumbnailService" ref="ThumbnailService" />
+		<property name="thumbnailDefinitions">
+			<list>
+				<bean class="org.alfresco.repo.thumbnail.ThumbnailDefinition">
+					<property name="name" value="imgpreviewmedium" />
+					<property name="mimetype" value="image/png"/>
+					<property name="transformationOptions">
+						<bean parent="defaultImageTransformationOptions">
+                            <property name="resizeOptions">
+                                <bean parent="defaultImageResizeOptions">
+                                    <property name="width" value="200"/>
+                                    <property name="height" value="200"/>
+                                    <property name="allowEnlargement" value="false" />
+                                </bean> 
+                            </property>
+                        </bean>
+					</property>
+					<property name="placeHolderResourcePath" value="alfresco/thumbnail/thumbnail_placeholder_imgpreview.png" />
+					<property name="runAs" value="System"/>
+					<property name="failureHandlingOptions" ref="standardFailureOptions"/>
+    			</bean>
+    		</list>
+    	</property>
+    </bean>
+</beans>
